@@ -6,6 +6,7 @@
 #include "auxiliary.h"
 #include "initial_solution.h"
 #include "local_search.h"
+#include "ils.h"
 int grasp(int numberOfIterations, int numberOfCities, int distances[][numberOfCities], city cities[], step path[]);
 int main(int argc, char const *argv[])
 {
@@ -31,30 +32,32 @@ int main(int argc, char const *argv[])
 	
 	
 	city cities[numberOfCities];
-	step path[numberOfCities], tempPath[numberOfCities];
+	step path[numberOfCities];
 	int distances[numberOfCities][numberOfCities];
 
 	read_file_and_fill_Cities(cities, f, numberOfCities);
 	create_distance_matrix(numberOfCities, cities, distances);
 	
 	//print_distance_matrix(numberOfCities, distances);
-	initialize_cities_as_not_visited(numberOfCities, cities);
+	/*initialize_cities_as_not_visited(numberOfCities, cities);
 	for (int i = 0; i < numberOfCities-1; ++i)
 	{
 		path[i].start = cities[i];
 		path[i].finish = cities[i+1];
 		path[i].distance = distances[i][i+1];
 	}
-	path[7].start = cities[7];
-	path[7].finish = cities[0];
-	path[7].distance = distances[0][7];
-	
+	path[9].start = cities[9];
+	path[9].finish = cities[0];
+	path[9].distance = distances[0][9];
 	print_path(numberOfCities, path);
-	opt2Swap(numberOfCities, path, tempPath, 2, 6);
-	opt2Swap(numberOfCities, path, tempPath, 0, 4);
-	//opt2Swap(numberOfCities, path, tempPath, 0, 5);
-	print_path(numberOfCities, tempPath);
-	printf("\n");
+	//opt2(numberOfCities, path);
+	print_path(numberOfCities, path);
+	nearestNeighbor(numberOfCities, cities, distances, path);*/
+	
+	printf("melhor = %d\n", grasp(numberOfIterations, numberOfCities, distances, cities, path));
+	successors(numberOfCities, path);
+	print_path(numberOfCities, path);
+	//printf("\n");
 	
 	fclose(f);
 	

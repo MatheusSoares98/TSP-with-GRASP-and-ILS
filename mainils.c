@@ -11,11 +11,6 @@
 
 int main(){
 	srand((unsigned) time(NULL));
-	int pos[4] = {-3,-3, -3, -3};
-	f(9, pos);
-	for (int i = 0; i < 4; ++i)
-	{
-		printf("%d\n", pos[i]);
-	}
+	//successors(8);
 	return 0;
 }
