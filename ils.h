@@ -84,7 +84,9 @@ void successors(int numberOfCities, step path[numberOfCities]) {
 	int successors[numberOfCities], successorsCopy[numberOfCities];
 	int pos[4] = {-3,-3, -3, -3};
 	int aux;
+	city swap;
 	step copy[numberOfCities];
+	copy_path(numberOfCities, path, copy);
 
 	for (int i = 0; i < numberOfCities; ++i)
 	{
@@ -93,28 +95,48 @@ void successors(int numberOfCities, step path[numberOfCities]) {
 	successors[numberOfCities-1] = 0;
 	generate_random_positions(numberOfCities, pos);
 	bubble_sort(pos);
+
+	swap = path[pos[0]].finish;
+	path[pos[0]].finish = path[pos[2]].finish;
+	path[pos[2]].finish = swap;
+
+	swap = path[pos[1]].finish;
+	path[pos[1]].finish = path[pos[3]].finish;
+	path[pos[3]].finish = swap;
+
+
 	aux = successors[pos[0]];
 	successors[pos[0]] = successors[pos[2]];
 	successors[pos[2]] = aux;
 	aux = successors[pos[1]];
 	successors[pos[1]] = successors[pos[3]];
 	successors[pos[3]] = aux;
+
+	
+
 	for (int i = 0; i < numberOfCities; ++i)
 	{
 		successorsCopy[i] = successors[i];
 	}
-
-	copy[0].start = path[0].start;
-	copy[0].finish = path[successors[0]].start;
+	copy[0]= path[0];
+	
 	for (int i = 1; i < numberOfCities; ++i)
 	{
-		copy[i].start = copy[i-1].finish;
-		copy[i].finish = path[successorsCopy[i-1]].start;
+		//copy[i].start = copy[i-1].finish;
+		//copy[i].finish = path[successorsCopy[i-1]].start;
+		copy[i] = path[successorsCopy[i-1]];
 		successorsCopy[i] = successors[successorsCopy[i-1]];
 	}
+//*/
+	for (int i = 0; i < 4; ++i)
+	{
+		printf("%d  ", pos[i]);
+	}
+	printf("\n");
 
 	for (int i = 0; i < numberOfCities; ++i)
 	{
 		printf("%d  ", successors[i]);
 	}
+	copy_path(numberOfCities, copy, path);
 }

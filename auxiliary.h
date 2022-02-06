@@ -103,4 +103,22 @@ void print_distance_matrix(int numberOfSteps, int distances[numberOfSteps][numbe
 		
 	}
 }
+
+
+bool is_a_valid_path(int numberOfSteps, step path[numberOfSteps]) {
+	for (int i = 0; i < numberOfSteps-1; ++i)
+	{
+		if (calculate_distance(path[i].finish, path[i+1].start) != 0)
+		{
+			return false;
+		}
+	}
+	if (calculate_distance(path[numberOfSteps-1].finish, path[0].start) != 0 )
+	{
+		return false;
+	}
+	return true;
+}
+
+
 #endif

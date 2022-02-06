@@ -79,7 +79,7 @@ void nearestNeighbor(int numberOfSteps, city cities[], int distances[][numberOfS
     path[numberOfSteps-1].finish = cities[firstcity];
 	path[numberOfSteps-1].distance = calculate_distance(path[numberOfSteps-1].start, path[numberOfSteps-1].finish);
     //&& (count_unvisited_cities(numberOfSteps, cities) > 0)	  	
-    print_path(numberOfSteps, path);
+    //print_path(numberOfSteps, path);
 }
 
 int find_nearest(int numberOfSteps, int currentCity, int distances[][numberOfSteps], city cities[]) {
