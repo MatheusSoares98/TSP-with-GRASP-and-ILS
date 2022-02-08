@@ -56,7 +56,7 @@ int main(int argc, char const *argv[])
 	
 	printf("melhor = %d\n", grasp(numberOfIterations, numberOfCities, distances, cities, path));
 	print_path(numberOfCities, path);
-	successors(numberOfCities, path);
+	double_bridge(numberOfCities, path);
 	print_path(numberOfCities, path);
 	printf("%d\n", is_a_valid_path(numberOfCities, path));
 	//printf("\n");

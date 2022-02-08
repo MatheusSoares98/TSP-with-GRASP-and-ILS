@@ -73,38 +73,16 @@ void bubble_sort(int pos[4]) {
 	}
 }
 
-void double_bridge(int numberOfCities, step path[numberOfCities]) {
-	int pos[4] = {-3,-3, -3, -3};
-	generate_random_positions(9, pos);
-	bubble_sort(pos);
 
-}
-
-void successors(int numberOfCities, step path[numberOfCities]) {
-	int successors[numberOfCities], successorsCopy[numberOfCities];
-	int pos[4] = {-3,-3, -3, -3};
+void create_successors_array(int numberOfCities, int pos[4], int successors[numberOfCities], int successorsCopy[numberOfCities]) {
 	int aux;
-	city swap;
-	step copy[numberOfCities];
-	copy_path(numberOfCities, path, copy);
-
+	
 	for (int i = 0; i < numberOfCities; ++i)
 	{
 		successors[i] = i + 1;
 	}
 	successors[numberOfCities-1] = 0;
-	generate_random_positions(numberOfCities, pos);
-	bubble_sort(pos);
-
-	swap = path[pos[0]].finish;
-	path[pos[0]].finish = path[pos[2]].finish;
-	path[pos[2]].finish = swap;
-
-	swap = path[pos[1]].finish;
-	path[pos[1]].finish = path[pos[3]].finish;
-	path[pos[3]].finish = swap;
-
-
+	
 	aux = successors[pos[0]];
 	successors[pos[0]] = successors[pos[2]];
 	successors[pos[2]] = aux;
@@ -112,7 +90,24 @@ void successors(int numberOfCities, step path[numberOfCities]) {
 	successors[pos[1]] = successors[pos[3]];
 	successors[pos[3]] = aux;
 
-	
+}
+
+void double_bridge(int numberOfCities, step path[numberOfCities]) {
+	int pos[4] = {-3,-3, -3, -3};
+	int successors[numberOfCities], successorsCopy[numberOfCities];
+	step copy[numberOfCities];
+	copy_path(numberOfCities, path, copy);
+	city swap;
+	generate_random_positions(9, pos);
+	bubble_sort(pos);
+	create_successors_array(numberOfCities, pos, successors, successorsCopy);
+	swap = path[pos[0]].finish;
+	path[pos[0]].finish = path[pos[2]].finish;
+	path[pos[2]].finish = swap;
+
+	swap = path[pos[1]].finish;
+	path[pos[1]].finish = path[pos[3]].finish;
+	path[pos[3]].finish = swap;
 
 	for (int i = 0; i < numberOfCities; ++i)
 	{
@@ -122,21 +117,9 @@ void successors(int numberOfCities, step path[numberOfCities]) {
 	
 	for (int i = 1; i < numberOfCities; ++i)
 	{
-		//copy[i].start = copy[i-1].finish;
-		//copy[i].finish = path[successorsCopy[i-1]].start;
 		copy[i] = path[successorsCopy[i-1]];
 		successorsCopy[i] = successors[successorsCopy[i-1]];
 	}
-//*/
-	for (int i = 0; i < 4; ++i)
-	{
-		printf("%d  ", pos[i]);
-	}
-	printf("\n");
 
-	for (int i = 0; i < numberOfCities; ++i)
-	{
-		printf("%d  ", successors[i]);
-	}
 	copy_path(numberOfCities, copy, path);
 }
