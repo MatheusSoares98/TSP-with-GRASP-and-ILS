@@ -123,3 +123,32 @@ void double_bridge(int numberOfCities, step path[numberOfCities]) {
 
 	copy_path(numberOfCities, copy, path);
 }
+
+int ils(int numberOfIterations, int numberOfCities, int distances[][numberOfCities], city cities[], step path[])
+{
+	clock_t start_t, end_t, total_t;
+	start_t = clock();
+	step tempPath[numberOfCities];
+	
+	double minimumResult = INFINITY;
+	int currentResult;
+	initialize_cities_as_not_visited(numberOfCities, cities);
+	nearestNeighbor(numberOfCities, cities, distances, path);
+	currentResult = opt2(numberOfCities, path);
+	
+	for (int i = 0; i < numberOfIterations; ++i)
+	{
+		copy_path(numberOfCities, path, tempPath);
+		double_bridge(numberOfCities, tempPath);
+		currentResult = opt2(numberOfCities, tempPath);
+		if (currentResult < minimumResult)
+		{
+			minimumResult = currentResult;
+			copy_path(numberOfCities, tempPath, path);
+		}
+	}
+	end_t = clock();
+	total_t = (long int)(end_t - start_t);
+   	printf("Total time taken by CPU: %f\n", (float)total_t / CLOCKS_PER_SEC);
+	return (int)minimumResult;
+}

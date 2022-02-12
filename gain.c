@@ -55,9 +55,9 @@ int main(int argc, char const *argv[])
 	nearestNeighbor(numberOfCities, cities, distances, path);*/
 	
 	printf("melhor = %d\n", grasp(numberOfIterations, numberOfCities, distances, cities, path));
-	print_path(numberOfCities, path);
-	double_bridge(numberOfCities, path);
-	print_path(numberOfCities, path);
+	//printf("melhor = %d\n", ils(numberOfIterations, numberOfCities, distances, cities, path));
+
+	//print_path(numberOfCities, path);
 	printf("%d\n", is_a_valid_path(numberOfCities, path));
 	//printf("\n");
 	
