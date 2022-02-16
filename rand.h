@@ -42,7 +42,7 @@ int myRand(int arr[], int freq[], int n)
 }
  
 // Driver program to test above functions
-int main()
+/*(int main()
 {
     int arr[]  = {1, 2, 3, 4, 5, 6, 7, 8, 9};
     int freq[] = {10, 5, 20, 10, 50, 100, 50, 200, 50};
@@ -57,4 +57,4 @@ int main()
       printf("%d\n", myRand(arr, freq, n));
  
     return 0;
-}
+}*/

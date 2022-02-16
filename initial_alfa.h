@@ -4,7 +4,7 @@
 #include <stdlib.h> 
 #include <time.h>
 #include "auxiliary.h"
-
+#include "rand.h"
 
 void nearestNeighbor(int numberOfSteps, city cities[], int distances[][numberOfSteps], step path[]);
 int find_nearest(int numberOfSteps, int currentCity, int distances[][numberOfSteps], city cities[]);
@@ -19,8 +19,14 @@ void nearestNeighbor(int numberOfSteps, city cities[], int distances[][numberOfS
     cities[pos].visited = true;
     //printf("%d\n", pos);
     int firstcity = currentCity;
+
     double alfa = get_random_interval(0, 1);
-    
+    int AlfaValues[] = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
+    int probabilities[] = {1, 1, 1, 1, 1, 1, 1, 1, 1, 1};
+    int means[] = {1, 1, 1, 1, 1, 1, 1, 1, 1, 1};
+    int candidato = myRand(AlfaValues, probabilities, 10);
+    printf("candidato == %d\n", candidato);
+
     printf("alfa = %lf  pos = %d\n", alfa, pos);
     
     	for (i = 0; i < numberOfSteps && (count_unvisited_cities(numberOfSteps, cities) > 0); ++i)
@@ -29,7 +35,7 @@ void nearestNeighbor(int numberOfSteps, city cities[], int distances[][numberOfS
     		city citiesCopy[numberOfSteps];
     		copy_cities(numberOfSteps, cities, citiesCopy);
     		int size = (int)get_random_interval(1, count_unvisited_cities(numberOfSteps, citiesCopy) + 0.99);
-            printf("size = %d\n", size);
+            //printf("size = %d\n", size);
             if (size * alfa >=1 )
             {
                 size *= alfa;
@@ -61,6 +67,7 @@ void nearestNeighbor(int numberOfSteps, city cities[], int distances[][numberOfS
     path[numberOfSteps-1].start = path[numberOfSteps-2].finish;
     path[numberOfSteps-1].finish = cities[firstcity];
 	path[numberOfSteps-1].distance = calculate_distance(path[numberOfSteps-1].start, path[numberOfSteps-1].finish);
+    
     //&& (count_unvisited_cities(numberOfSteps, cities) > 0)	  	
 }
 
