@@ -1,7 +1,7 @@
 #include<stdio.h>
 #include<math.h>
 #include "auxiliary.h"
-void opt2Swap(int numberOfSteps, int path[][numberOfSteps], int tempPath[][numberOfSteps], int start, int finish);
+void opt2Swap(int numberOfCities, int path[][numberOfCities], int tempPath[][numberOfCities], int start, int finish);
 int main(int argc, char const *argv[])
 {
 	/*step path[5];
@@ -21,16 +21,16 @@ int main(int argc, char const *argv[])
 }
 
 
-void opt2Swap(int numberOfSteps, int path[][numberOfSteps], int tempPath[][numberOfSteps], int start, int finish){
+void opt2Swap(int numberOfCities, int path[][numberOfCities], int tempPath[][numberOfCities], int start, int finish){
 	
 	 int aux[2];
 	 printf("copiando:\n");
-	 for (int x = 0; x < numberOfSteps; ++x)
+	 for (int x = 0; x < numberOfCities; ++x)
 	 {
 	 	tempPath[0][x] = path[0][x];
 	 	tempPath[1][x] = path[1][x];
 	 }
-	 for (int i = 0; i < numberOfSteps; ++i)
+	 for (int i = 0; i < numberOfCities; ++i)
 	 {
 	 	printf("%d, %d\n", tempPath[0][i], tempPath[1][i]);
 	 }
@@ -41,7 +41,7 @@ void opt2Swap(int numberOfSteps, int path[][numberOfSteps], int tempPath[][numbe
 	 	tempPath[0][x] = path[1][x];
 	 	tempPath[1][x] = path[0][x];
 	 }
-	 for (int i = 0; i < numberOfSteps; ++i)
+	 for (int i = 0; i < numberOfCities; ++i)
 	 {
 	 	printf("%d, %d\n", tempPath[0][i], tempPath[1][i]);
 	 }
@@ -59,13 +59,13 @@ void opt2Swap(int numberOfSteps, int path[][numberOfSteps], int tempPath[][numbe
 	 	printf("trocou %d %d\n", x, y);
 	 }
 	 
-	 for (int i = 0; i < numberOfSteps; ++i)
+	 for (int i = 0; i < numberOfCities; ++i)
 	 {
 	 	printf("%d, %d\n", tempPath[0][i], tempPath[1][i]);
 	 }
 	 printf("\n\n");
 
-	 for (int x = finish + 1; x < numberOfSteps; ++x)
+	 for (int x = finish + 1; x < numberOfCities; ++x)
 	 {
 	 	tempPath[0][x] = path[0][x];
 	 	tempPath[1][x] = path[1][x];
@@ -75,7 +75,7 @@ void opt2Swap(int numberOfSteps, int path[][numberOfSteps], int tempPath[][numbe
 	 tempPath[0][finish] = path[1][start];;
 	 tempPath[1][finish] = path[1][finish];;
 
-	 for (int i = 0; i < numberOfSteps; ++i)
+	 for (int i = 0; i < numberOfCities; ++i)
 	 {
 	 	printf("%d, %d\n", tempPath[0][i], tempPath[1][i]);
 	 }

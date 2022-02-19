@@ -4,11 +4,10 @@
 #include <time.h>  
 #include "file.h"
 #include "auxiliary.h"
-#include "initial_solution.h"
-#include "local_search.h"
 #include "ils.h"
 #include <string.h> 
-int grasp(int numberOfIterations, int numberOfCities, int distances[][numberOfCities], city cities[], step path[]);
+#include "grasp.h"
+
 int main(int argc, char const *argv[])
 {
 	srand((unsigned) time(NULL));
@@ -33,7 +32,6 @@ int main(int argc, char const *argv[])
 	}
 	fscanf(f,"%s %d\n", line, &numberOfCities);
 	
-	
 	city cities[numberOfCities];
 	step path[numberOfCities];
 	int distances[numberOfCities][numberOfCities];
@@ -41,40 +39,11 @@ int main(int argc, char const *argv[])
 	read_file_and_fill_Cities(cities, f, numberOfCities);
 	create_distance_matrix(numberOfCities, cities, distances);
 	
-	//printf("melhor = %d\n", grasp(numberOfIterations, numberOfCities, distances, cities, path));
-	printf("melhor = %d\n", ils(numberOfIterations, numberOfCities, distances, cities, path));
-
-	//print_path(numberOfCities, path);
-	printf("%d\n", is_a_valid_path(numberOfCities, path));
-	//printf("\n");
+	printf("melhor = %d\n", grasp(numberOfIterations, numberOfCities, distances, cities, path));
 	
+	printf("%d\n", is_a_valid_path(numberOfCities, path));
 	fclose(f);
 	
 	return 0;
 }
 
-int grasp(int numberOfIterations, int numberOfCities, int distances[][numberOfCities], city cities[], step path[]) {
-	clock_t start_t, end_t, total_t;
-	start_t = clock();
-	step tempPath[numberOfCities];
-	copy_path(numberOfCities, path, tempPath);
-	double minimumResult = INFINITY;
-	int currentResult;
-	for (int i = 0; i < numberOfIterations; ++i)
-	{
-		initialize_cities_as_not_visited(numberOfCities, cities);
-		nearestNeighbor(numberOfCities, cities, distances, tempPath);
-		currentResult = opt2(numberOfCities, tempPath);
-		if (currentResult < minimumResult)
-		{
-			minimumResult = currentResult;
-			copy_path(numberOfCities, tempPath, path);
-		}
-		//printf("%lf\n", minimumResult);
-
-	}
-	end_t = clock();
-	total_t = (long int)(end_t - start_t);
-   	printf("Total time taken by CPU: %f\n", (float)total_t / CLOCKS_PER_SEC);
-	return (int)minimumResult;
-}

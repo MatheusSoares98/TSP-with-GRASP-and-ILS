@@ -1,3 +1,5 @@
+#ifndef ILS_H 
+#define ILS_H
 #include <stdio.h>
 #include <math.h>
 #include <stdbool.h>
@@ -7,7 +9,8 @@
 #define RAND_MAX = 10
 #endif
 #include "auxiliary.h"
-
+#include "initial_solution.h"
+#include "local_search.h"
 
 void generate_random_positions(int size, int pos[4]) {
 	int aux = 0, cursor = 0, counter = 0;
@@ -72,7 +75,6 @@ void bubble_sort(int pos[4]) {
 		}
 	}
 }
-
 
 void create_successors_array(int numberOfCities, int pos[4], int successors[numberOfCities], int successorsCopy[numberOfCities]) {
 	int aux;
@@ -152,3 +154,5 @@ int ils(int numberOfIterations, int numberOfCities, int distances[][numberOfCiti
    	printf("Total time taken by CPU: %f\n", (float)total_t / CLOCKS_PER_SEC);
 	return (int)minimumResult;
 }
+
+#endif

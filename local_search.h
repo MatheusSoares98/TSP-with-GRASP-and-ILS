@@ -1,3 +1,5 @@
+#ifndef LOCAL_SEARCH_H  
+#define LOCAL_SEARCH_H 
 #include <stdio.h>
 #include <math.h>
 #include <stdbool.h>
@@ -8,29 +10,28 @@
 #endif
 #include "auxiliary.h"
 
-int opt2Swap(int numberOfSteps, step path[numberOfSteps], step *tempPath, int start, int finish);
-int opt2(int numberOfSteps, step path[]);
+int opt2Swap(int numberOfCities, step path[numberOfCities], step *tempPath, int start, int finish);
 
-int opt2(int numberOfSteps, step path[]){
-	step *tempPath = malloc(sizeof(step)* numberOfSteps);
-	copy_path(numberOfSteps, path, tempPath);
+int opt2(int numberOfCities, step path[]){
+	step *tempPath = malloc(sizeof(step)* numberOfCities);
+	copy_path(numberOfCities, path, tempPath);
 	bool improved = true;
-	int bestDistance = calculate_total_distance(numberOfSteps, path);
+	int bestDistance = calculate_total_distance(numberOfCities, path);
 	while(improved) {
 		improved = false;
-		for (int i = 0; i < numberOfSteps - 1; ++i)
+		for (int i = 0; i < numberOfCities - 1; ++i)
 		{
-			for (int j = i + 2; j < numberOfSteps; ++j)
+			for (int j = i + 2; j < numberOfCities; ++j)
 			{
-				if(i == 0 && j == numberOfSteps-1){
+				if(i == 0 && j == numberOfCities-1){
 					continue;
 				}
-				int newDistance = opt2Swap(numberOfSteps, path, tempPath, i, j);
+				int newDistance = opt2Swap(numberOfCities, path, tempPath, i, j);
 				if(newDistance < bestDistance) {
 					bestDistance = newDistance;
 					improved = true;
-					copy_path(numberOfSteps, tempPath, path);
-					//printf("\ntotal distance = %d\n", calculate_total_distance(numberOfSteps, path));
+					copy_path(numberOfCities, tempPath, path);
+					//printf("\ntotal distance = %d\n", calculate_total_distance(numberOfCities, path));
 					break;
 				}
 			}
@@ -40,12 +41,12 @@ int opt2(int numberOfSteps, step path[]){
 		}
 	}
 	free(tempPath);
-	return calculate_total_distance(numberOfSteps, path);
+	return calculate_total_distance(numberOfCities, path);
 }
-int opt2Swap(int numberOfSteps, step path[numberOfSteps], step *tempPath, int start, int finish){
+int opt2Swap(int numberOfCities, step path[numberOfCities], step *tempPath, int start, int finish){
 	
 	 step aux;
-	 for (int x = 0; x < numberOfSteps; ++x)
+	 for (int x = 0; x < numberOfCities; ++x)
 	 {
 	 	tempPath[x] = path[x];
 	 }
@@ -62,7 +63,7 @@ int opt2Swap(int numberOfSteps, step path[numberOfSteps], step *tempPath, int st
 	 	tempPath[x] = tempPath[y];
 	 	tempPath[y] = aux;
 	 }
-	 for (int x = finish + 1; x < numberOfSteps; ++x)
+	 for (int x = finish + 1; x < numberOfCities; ++x)
 	 {
 	 	tempPath[x] = path[x];
 	 }
@@ -70,10 +71,12 @@ int opt2Swap(int numberOfSteps, step path[numberOfSteps], step *tempPath, int st
 	 tempPath[start].finish = path[finish].start;
 	 tempPath[finish].start = path[start].finish;
 	 tempPath[finish].finish = path[finish].finish;
-	 for (int i = 0; i < numberOfSteps; ++i)
+	 for (int i = 0; i < numberOfCities; ++i)
 	 {
 	 	tempPath[i].distance = calculate_distance(tempPath[i].start, tempPath[i].finish);
 	 	
 	 }
-	 return calculate_total_distance(numberOfSteps, tempPath);
+	 return calculate_total_distance(numberOfCities, tempPath);
 }
+
+#endif
