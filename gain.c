@@ -11,15 +11,19 @@
 int main(int argc, char const *argv[])
 {
 	srand((unsigned) time(NULL));
-	char fileName[250], line[250], filePath[250]="./instances/";
+	char fileName[250], line[250], filePath[250]="./instances/", benchmark[250]="./benchmark/";
 	int numberOfIterations;
 	printf("digite o numero de iteracoes desejadas\n");
 	scanf("%d", &numberOfIterations);
 	printf("digite o nome do arquivo a ser lido\n");
 	scanf("%s", fileName);
+	strcat(benchmark, fileName);
+	strcat(benchmark, ".benchmark");
 	strcat(filePath, fileName);
+	strcat(filePath, ".tsp");
 	printf("%s", filePath);
 	FILE *f = fopen(filePath, "r");
+	FILE *benchmarkFile = fopen(benchmark, "a");
 	if(f == NULL)
    	{
       printf("Arquivo nao encontrado");   
