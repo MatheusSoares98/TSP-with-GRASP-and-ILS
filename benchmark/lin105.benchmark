@@ -1,0 +1,42 @@
+grasp with an alpha of: 0.1
+cost after initial solution = 31786
+cost after 100 iterations with no improvements = 14513
+Time taken by cpu: 471.230000
+Total number of iterations:133
+
+
+grasp with an alpha of: 0.1
+cost after initial solution = 30429
+cost after 100 iterations with no improvements = 14505
+Time taken by cpu: 320.556000
+Total number of iterations:102
+
+
+grasp with an alpha of: 0.1
+cost after initial solution = 35100
+cost after 100 iterations with no improvements = 14462
+Time taken by cpu: 839.871000
+Total number of iterations:246
+
+
+grasp with an alpha of: 0.3
+cost after initial solution = 45067
+cost after 100 iterations with no improvements = 14507
+Time taken by cpu: 1175.490000
+Total number of iterations:143
+
+
+grasp with an alpha of: 0.3
+cost after initial solution = 37500
+cost after 100 iterations with no improvements = 14439
+Time taken by cpu: 1264.100000
+Total number of iterations:296
+
+
+grasp with an alpha of: 0.3
+cost after initial solution = 41795
+cost after 100 iterations with no improvements = 14532
+Time taken by cpu: 529.889000
+Total number of iterations:115
+
+

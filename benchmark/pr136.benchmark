@@ -1,0 +1,77 @@
+grasp with an alpha of: 0.1
+cost after initial solution = 193107
+cost after 100 iterations with no improvements = 98643
+Time taken by cpu: 1382.373000
+Total number of iterations:173
+
+
+grasp with an alpha of: 0.1
+cost after initial solution = 188811
+cost after 100 iterations with no improvements = 98403
+Time taken by cpu: 1375.862000
+Total number of iterations:172
+
+
+grasp with an alpha of: 0.1
+cost after initial solution = 188726
+cost after 100 iterations with no improvements = 99037
+Time taken by cpu: 1050.814000
+Total number of iterations:133
+
+
+grasp with an alpha of: 0.3
+cost after initial solution = 251035
+cost after 100 iterations with no improvements = 98557
+Time taken by cpu: 1593.693000
+Total number of iterations:128
+
+
+grasp with an alpha of: 0.3
+cost after initial solution = 261201
+cost after 100 iterations with no improvements = 97484
+Time taken by cpu: 3226.819000
+Total number of iterations:235
+
+
+grasp with an alpha of: 0.3
+cost after initial solution = 257534
+cost after 100 iterations with no improvements = 99648
+Time taken by cpu: 1309.849000
+Total number of iterations:107
+
+
+grasp with an alpha of: 0.5
+cost after initial solution = 326242
+cost after 100 iterations with no improvements = 99404
+Time taken by cpu: 2046.158000
+Total number of iterations:119
+
+
+grasp with an alpha of: 0.5
+cost after initial solution = 341608
+cost after 100 iterations with no improvements = 98160
+Time taken by cpu: 3332.239000
+Total number of iterations:162
+
+
+grasp with an alpha of: 0.5
+cost after initial solution = 329434
+cost after 100 iterations with no improvements = 97662
+Time taken by cpu: 2067.487000
+Total number of iterations:140
+
+
+grasp with an alpha of: 0.7
+cost after initial solution = 382266
+cost after 100 iterations with no improvements = 98494
+Time taken by cpu: 2209.740000
+Total number of iterations:144
+
+
+grasp with an alpha of: 0.7
+cost after initial solution = 411467
+cost after 100 iterations with no improvements = 98541
+Time taken by cpu: 3577.384000
+Total number of iterations:233
+
+

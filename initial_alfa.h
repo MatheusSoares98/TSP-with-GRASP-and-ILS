@@ -20,14 +20,14 @@ void nearestNeighbor(int numberOfCities, city cities[], int distances[][numberOf
     //printf("%d\n", pos);
     int firstcity = currentCity;
 
-    double alpha = get_random_interval(0, 1);
+    float alpha = get_random_interval(0, 1);
     int alphaValues[] = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
     int probabilities[] = {1, 1, 1, 1, 1, 1, 1, 1, 1, 1};
     int means[] = {1, 1, 1, 1, 1, 1, 1, 1, 1, 1};
     int candidato = myRand(alphaValues, probabilities, 10);
     printf("candidato == %d\n", candidato);
 
-    printf("alpha = %lf  pos = %d\n", alpha, pos);
+    printf("alpha = %f  pos = %d\n", alpha, pos);
     
     	for (i = 0; i < numberOfCities && (count_unvisited_cities(numberOfCities, cities) > 0); ++i)
     	{

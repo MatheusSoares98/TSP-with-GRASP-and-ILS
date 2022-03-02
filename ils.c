@@ -17,5 +17,5 @@ int main(){
 
 void f() {
 	srand((unsigned) time(NULL));
-	printf("%lf\n", get_random_interval(0, 1));
+	printf("%f\n", get_random_interval(0, 1));
 }

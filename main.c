@@ -78,7 +78,7 @@ int grasp(int numberOfIterations, int numberOfCities, int distances[][numberOfCi
 			minimumResult = currentResult;
 			copy_path(numberOfCities, tempPath, path);
 		}
-		//printf("%lf\n", minimumResult);
+		//printf("%f\n", minimumResult);
 
 	}
 	end_t = clock();

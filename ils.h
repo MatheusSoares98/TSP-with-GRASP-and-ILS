@@ -126,7 +126,7 @@ void double_bridge(int numberOfCities, step path[numberOfCities]) {
 	copy_path(numberOfCities, copy, path);
 }
 
-int ils(int numberOfIterations, int numberOfCities, int distances[][numberOfCities], city cities[], step path[])
+int ils(int numberOfIterations, int numberOfCities, int distances[][numberOfCities], city cities[], step path[], float alpha)
 {
 	clock_t start_t, end_t, total_t;
 	start_t = clock();
@@ -135,7 +135,7 @@ int ils(int numberOfIterations, int numberOfCities, int distances[][numberOfCiti
 	double minimumResult = INFINITY;
 	int currentResult;
 	initialize_cities_as_not_visited(numberOfCities, cities);
-	nearestNeighbor(numberOfCities, cities, distances, path);
+	nearestNeighbor(numberOfCities, cities, distances, path, alpha);
 	currentResult = opt2(numberOfCities, path);
 	
 	for (int i = 0; i < numberOfIterations; ++i)

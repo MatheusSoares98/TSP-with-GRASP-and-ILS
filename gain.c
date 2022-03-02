@@ -42,10 +42,12 @@ int main(int argc, char const *argv[])
 
 	read_file_and_fill_Cities(cities, f, numberOfCities);
 	create_distance_matrix(numberOfCities, cities, distances);
+	const float alpha = 0.3;
 	
-	printf("melhor = %d\n", grasp(numberOfIterations, numberOfCities, distances, cities, path));
 	
-	printf("%d\n", is_a_valid_path(numberOfCities, path));
+	printf("melhor = %d\n", grasp(numberOfIterations, numberOfCities, distances, cities, path, benchmarkFile, alpha));
+	//print_path(numberOfCities, path);
+	//printf("%d\n", is_a_valid_path(numberOfCities, path));
 	fclose(f);
 	
 	return 0;
