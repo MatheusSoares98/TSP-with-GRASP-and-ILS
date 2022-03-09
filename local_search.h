@@ -10,13 +10,13 @@
 #endif
 #include "auxiliary.h"
 
+bool is_shorter(int numberOfCities, step path[], int start, int finish); 
 int opt2Swap(int numberOfCities, step path[numberOfCities], step *tempPath, int start, int finish);
 
 int opt2(int numberOfCities, step path[]){
 	step *tempPath = malloc(sizeof(step)* numberOfCities);
 	copy_path(numberOfCities, path, tempPath);
 	bool improved = true;
-	int bestDistance = calculate_total_distance(numberOfCities, path);
 	while(improved) {
 		improved = false;
 		for (int i = 0; i < numberOfCities - 1; ++i)
@@ -26,9 +26,10 @@ int opt2(int numberOfCities, step path[]){
 				if(i == 0 && j == numberOfCities-1){
 					continue;
 				}
-				int newDistance = opt2Swap(numberOfCities, path, tempPath, i, j);
-				if(newDistance < bestDistance) {
-					bestDistance = newDistance;
+				//int newDistance = opt2Swap(numberOfCities, path, tempPath, i, j);
+				//int newDistance = is_shorter(numberOfCities, path, i, j);
+				if(is_shorter(numberOfCities, path, i, j)) {
+					opt2Swap(numberOfCities, path, tempPath, i, j);
 					improved = true;
 					copy_path(numberOfCities, tempPath, path);
 					//printf("\ntotal distance = %d\n", calculate_total_distance(numberOfCities, path));
@@ -52,7 +53,6 @@ int opt2Swap(int numberOfCities, step path[numberOfCities], step *tempPath, int 
 	 }
 	 for (int x = start+1; x < finish; ++x)
 	 {
-	 	
 	 	tempPath[x].start = path[x].finish;
 	 	tempPath[x].finish = path[x].start;
 	 }
@@ -63,10 +63,7 @@ int opt2Swap(int numberOfCities, step path[numberOfCities], step *tempPath, int 
 	 	tempPath[x] = tempPath[y];
 	 	tempPath[y] = aux;
 	 }
-	 for (int x = finish + 1; x < numberOfCities; ++x)
-	 {
-	 	tempPath[x] = path[x];
-	 }
+	 
 	 tempPath[start].start = path[start].start;
 	 tempPath[start].finish = path[finish].start;
 	 tempPath[finish].start = path[start].finish;
@@ -77,6 +74,13 @@ int opt2Swap(int numberOfCities, step path[numberOfCities], step *tempPath, int 
 	 	
 	 }
 	 return calculate_total_distance(numberOfCities, tempPath);
+}
+
+bool is_shorter(int numberOfCities, step path[], int start, int finish) {
+	int a = path[start].distance + path[finish].distance;
+	int b = calculate_distance(path[start].start, path[finish].start) + calculate_distance(path[start].finish, path[finish].finish);
+
+	return a > b;
 }
 
 #endif

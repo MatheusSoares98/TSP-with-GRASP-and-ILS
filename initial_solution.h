@@ -24,7 +24,7 @@ void nearestNeighbor(int numberOfCities, city cities[], int distances[][numberOf
 		city citiesCopy[numberOfCities];
 		copy_cities(numberOfCities, cities, citiesCopy);
 		int size = (int)get_random_interval(1, count_unvisited_cities(numberOfCities, citiesCopy) + 0.99);
-        printf("size = %d\n", size);
+        //printf("size = %d\n", size);
         if (size * alpha >=1 )
         {
             size *= alpha;
