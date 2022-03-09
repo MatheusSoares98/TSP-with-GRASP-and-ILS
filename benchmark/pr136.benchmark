@@ -17,7 +17,7 @@ cost after initial solution = 188726
 cost after 100 iterations with no improvements = 99037
 Time taken by cpu: 1050.814000
 Total number of iterations:133
-
+media= 98.694,33
 
 grasp with an alpha of: 0.3
 cost after initial solution = 251035
@@ -38,7 +38,7 @@ cost after initial solution = 257534
 cost after 100 iterations with no improvements = 99648
 Time taken by cpu: 1309.849000
 Total number of iterations:107
-
+media= 98.563
 
 grasp with an alpha of: 0.5
 cost after initial solution = 326242
@@ -59,7 +59,7 @@ cost after initial solution = 329434
 cost after 100 iterations with no improvements = 97662
 Time taken by cpu: 2067.487000
 Total number of iterations:140
-
+media= 98.408,66 best
 
 grasp with an alpha of: 0.7
 cost after initial solution = 382266
@@ -73,5 +73,5 @@ cost after initial solution = 411467
 cost after 100 iterations with no improvements = 98541
 Time taken by cpu: 3577.384000
 Total number of iterations:233
-
+media= 98.517,5
 

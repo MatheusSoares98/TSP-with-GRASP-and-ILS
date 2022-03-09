@@ -42,7 +42,7 @@ int main(int argc, char const *argv[])
 
 	read_file_and_fill_Cities(cities, f, numberOfCities);
 	create_distance_matrix(numberOfCities, cities, distances);
-	const float alpha = 0.3;
+	const float alpha = 0.7;
 	
 	
 	printf("melhor = %d\n", grasp(numberOfIterations, numberOfCities, distances, cities, path, benchmarkFile, alpha));
