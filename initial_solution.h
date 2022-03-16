@@ -1,15 +1,13 @@
 #ifndef INITIAL_SOLUTION_H  
 #define INITIAL_SOLUTION_H
-#include <stdio.h>
 #include <math.h>
-#include <stdbool.h>
 #include <stdlib.h> 
 #include <time.h>
 #include "auxiliary.h"
 
 int find_nearest(int numberOfCities, int currentCity, int distances[][numberOfCities], city cities[]);
 
-void nearestNeighbor(int numberOfCities, city cities[], int distances[][numberOfCities], step path[]){
+void nearest_neighbor(int numberOfCities, city cities[], int distances[][numberOfCities], step path[]){
     int nearest = 0;
     int currentStop = 0;
     int i;
@@ -38,16 +36,11 @@ void nearestNeighbor(int numberOfCities, city cities[], int distances[][numberOf
 			currentCityCopy = nearest;
 			LCR[i] = nearest;
 		}
-		
 		pos = rand() % size;;
-
 		nearest = LCR[pos];
-		
 		cities[nearest].visited = true;
-		
 		path[currentStop].start = cities[currentCity];
     	path[currentStop].finish = cities[nearest];
-
     	path[currentStop].distance = calculate_distance(path[currentStop].start, path[currentStop].finish);
     	currentCity = nearest;
     	currentStop++;

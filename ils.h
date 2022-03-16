@@ -1,21 +1,23 @@
 #ifndef ILS_H 
 #define ILS_H
-#include <stdio.h>
-#include <math.h>
-#include <stdbool.h>
-#include <stdlib.h> 
-#include <time.h>
-#ifndef RAND_MAX
-#define RAND_MAX = 10
+#ifndef BRIDGE_SIZE
+#define BRIDGE_SIZE 4
 #endif
-#include "auxiliary.h"
+#ifndef RAND_MAX
+#define RAND_MAX 10
+#endif
+#include <time.h>
+#include <stdbool.h>
+#include <math.h>
+#include <stdio.h>
 #include "initial_solution.h"
 #include "local_search.h"
+#include "auxiliary.h"
 
-void generate_random_positions(int size, int pos[4]) {
+void generate_random_positions(int size, int pos[BRIDGE_SIZE]) {
 	int aux = 0, cursor = 0, counter = 0;
 	bool unique = false;
-	for (int i = 0; i < 4; )
+	for (int i = 0; i < BRIDGE_SIZE; )
 	{
 		aux = rand() % size;
 		for (int j = 0; j < cursor || cursor == 0; j++, counter++)
@@ -56,8 +58,8 @@ void generate_random_positions(int size, int pos[4]) {
 
 }
 
-void bubble_sort(int pos[4]) {
-	int  n = 4, i, j, swap;
+void bubble_sort(int pos[BRIDGE_SIZE]) {
+	int  n = BRIDGE_SIZE, i, j, swap;
 	bool flag = false;
 	
 	for(i = 0 ; i < n - 1; i++) {
@@ -76,7 +78,7 @@ void bubble_sort(int pos[4]) {
 	}
 }
 
-void create_successors_array(int numberOfCities, int pos[4], int successors[numberOfCities], int successorsCopy[numberOfCities]) {
+void create_successors_array(int numberOfCities, int pos[BRIDGE_SIZE], int successors[numberOfCities], int successorsCopy[numberOfCities]) {
 	int aux;
 	
 	for (int i = 0; i < numberOfCities; ++i)
@@ -95,7 +97,7 @@ void create_successors_array(int numberOfCities, int pos[4], int successors[numb
 }
 
 void double_bridge(int numberOfCities, step path[numberOfCities]) {
-	int pos[4] = {-3,-3, -3, -3};
+	int pos[BRIDGE_SIZE] = {-3,-3, -3, -3};
 	int successors[numberOfCities], successorsCopy[numberOfCities];
 	step copy[numberOfCities];
 	copy_path(numberOfCities, path, copy);
@@ -135,7 +137,7 @@ int ils(int numberOfIterations, int numberOfCities, int distances[][numberOfCiti
 	double minimumResult = INFINITY;
 	int currentResult;
 	initialize_cities_as_not_visited(numberOfCities, cities);
-	nearestNeighbor(numberOfCities, cities, distances, path);
+	nearest_neighbor(numberOfCities, cities, distances, path);
 	currentResult = opt2(numberOfCities, path);
 	
 	for (int i = 0; i < numberOfIterations; ++i)

@@ -1,13 +1,9 @@
 #ifndef LOCAL_SEARCH_H  
 #define LOCAL_SEARCH_H 
-#include <stdio.h>
-#include <math.h>
-#include <stdbool.h>
-#include <stdlib.h> 
-#include <time.h>
 #ifndef RAND_MAX
 #define RAND_MAX = 10; value
 #endif
+#include <stdbool.h>
 #include "auxiliary.h"
 
 bool is_shorter(int numberOfCities, step path[], int start, int finish); 
@@ -26,8 +22,6 @@ int opt2(int numberOfCities, step path[]){
 				if(i == 0 && j == numberOfCities-1){
 					continue;
 				}
-				//int newDistance = opt2Swap(numberOfCities, path, tempPath, i, j);
-				//int newDistance = is_shorter(numberOfCities, path, i, j);
 				if(is_shorter(numberOfCities, path, i, j)) {
 					opt2Swap(numberOfCities, path, tempPath, i, j);
 					improved = true;

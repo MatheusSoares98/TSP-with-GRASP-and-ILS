@@ -1,7 +1,8 @@
 #ifndef AUXILIARY_H   
 #define AUXILIARY_H
 #include <stdlib.h>
-#include <time.h>  
+#include <math.h>
+#include <stdio.h>  
 #include <stdbool.h>
 
 typedef struct city{

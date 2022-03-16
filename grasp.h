@@ -4,12 +4,10 @@
 #include <stdlib.h>
 #include <math.h>
 #include <time.h>  
-#include "file.h"
 #include "auxiliary.h"
 #include "initial_solution.h"
 #include "local_search.h"
-
-#include <string.h> 
+ 
 
 int grasp(int numberOfIterations, int numberOfCities, int distances[][numberOfCities], city cities[], step path[]) {
 	clock_t start_t, end_t, total_t;
@@ -21,7 +19,7 @@ int grasp(int numberOfIterations, int numberOfCities, int distances[][numberOfCi
 	for (int i = 0; i < numberOfIterations; ++i)
 	{
 		initialize_cities_as_not_visited(numberOfCities, cities);
-		nearestNeighbor(numberOfCities, cities, distances, tempPath);
+		nearest_neighbor(numberOfCities, cities, distances, tempPath);
 		currentResult = opt2(numberOfCities, tempPath);
 		if (currentResult < minimumResult)
 		{

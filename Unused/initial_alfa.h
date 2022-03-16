@@ -6,11 +6,11 @@
 #include "auxiliary.h"
 #include "rand.h"
 
-void nearestNeighbor(int numberOfCities, city cities[], int distances[][numberOfCities], step path[]);
+void nearest_neighbor(int numberOfCities, city cities[], int distances[][numberOfCities], step path[]);
 int find_nearest(int numberOfCities, int currentCity, int distances[][numberOfCities], city cities[]);
 
 
-void nearestNeighbor(int numberOfCities, city cities[], int distances[][numberOfCities], step path[]){
+void nearest_neighbor(int numberOfCities, city cities[], int distances[][numberOfCities], step path[]){
     int nearest = 0;
     int currentStop = 0;
     int i;

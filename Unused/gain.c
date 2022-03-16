@@ -43,8 +43,9 @@ int main(int argc, char const *argv[])
 	read_file_and_fill_Cities(cities, f, numberOfCities);
 	create_distance_matrix(numberOfCities, cities, distances);
 	
-	printf("melhor = %d\n", grasp(numberOfIterations, numberOfCities, distances, cities, path));
-	
+	//printf("melhor = %d\n", grasp(numberOfIterations, numberOfCities, distances, cities, path));
+	printf("melhor = %d\n", ils(numberOfIterations, numberOfCities, distances, cities, path));
+
 	printf("%d\n", is_a_valid_path(numberOfCities, path));
 	fclose(f);
 	
