@@ -1,3 +1,6 @@
+/*#ifndef ITERATIONS_WITHOUT_IMPROVEMENT
+#define ITERATIONS_WITHOUT_IMPROVEMENT 100
+#endif*/
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
@@ -10,9 +13,9 @@ int main(int argc, char const *argv[])
 {
 	srand((unsigned) time(NULL));
 	char fileName[250], line[250], filePath[250]="./instances/", benchmark[250]="./benchmark/";
-	int numberOfIterations;
-	printf("digite o numero de iteracoes desejadas\n");
-	scanf("%d", &numberOfIterations);
+	int iterationsWithoutImprovement = 100;
+	//printf("digite o numero de iteracoes desejadas\n");
+	//scanf("%d", &iterationsWithoutImprovement);
 	printf("digite o nome do arquivo a ser lido\n");
 	scanf("%s", fileName);
 	strcat(benchmark, fileName);
@@ -41,8 +44,12 @@ int main(int argc, char const *argv[])
 	read_file_and_fill_Cities(cities, f, numberOfCities);
 	create_distance_matrix(numberOfCities, cities, distances);
 	
-	printf("melhor = %d\n", grasp(numberOfIterations, numberOfCities, distances, cities, path));
-	//printf("melhor = %d\n", ils(numberOfIterations, numberOfCities, distances, cities, path));
+	float alpha = (numberOfCities < 100) ? 0.1 : 0.3;
+
+	printf("melhor = %d\n", grasp(iterationsWithoutImprovement, numberOfCities, distances, cities, path, benchmarkFile, alpha));
+	printf("melhor = %d\n", grasp(iterationsWithoutImprovement, numberOfCities, distances, cities, path, benchmarkFile, alpha));
+	printf("melhor = %d\n", grasp(iterationsWithoutImprovement, numberOfCities, distances, cities, path, benchmarkFile, alpha));
+	//printf("melhor = %d\n", ils(iterationsWithoutImprovement, numberOfCities, distances, cities, path, benchmarkFile, alpha));
 
 	printf("%d\n", is_a_valid_path(numberOfCities, path));
 	fclose(f);

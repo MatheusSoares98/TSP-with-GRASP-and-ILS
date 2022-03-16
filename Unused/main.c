@@ -6,14 +6,14 @@
 #include "auxiliary.h"
 #include "initial_solution.h"
 #include "local_search.h"
-int grasp(int numberOfIterations, int numberOfCities, int distances[][numberOfCities], city cities[], step path[]);
+int grasp(int iterationsWithoutImprovement, int numberOfCities, int distances[][numberOfCities], city cities[], step path[]);
 int main(int argc, char const *argv[])
 {
 	srand((unsigned) time(NULL));
 	char fileName[250], line[250];
-	int numberOfIterations;
+	int iterationsWithoutImprovement;
 	printf("digite o numero de iteracoes desejadas\n");
-	scanf("%d", &numberOfIterations);
+	scanf("%d", &iterationsWithoutImprovement);
 	printf("digite o nome do arquivo a ser lido\n");
 	scanf("%s", fileName);
 	FILE *f = fopen(fileName, "r");
@@ -53,7 +53,7 @@ int main(int argc, char const *argv[])
 	print_path(numberOfCities, path);
 	nearest_neighbor(numberOfCities, cities, distances, path);
 	//print_path(numberOfCities, path);*/
-	printf("melhor = %d\n", grasp(numberOfIterations, numberOfCities, distances, cities, path));
+	printf("melhor = %d\n", grasp(iterationsWithoutImprovement, numberOfCities, distances, cities, path));
 	printf("\n");
 	
 	fclose(f);
@@ -61,14 +61,14 @@ int main(int argc, char const *argv[])
 	return 0;
 }
 
-int grasp(int numberOfIterations, int numberOfCities, int distances[][numberOfCities], city cities[], step path[]) {
+int grasp(int iterationsWithoutImprovement, int numberOfCities, int distances[][numberOfCities], city cities[], step path[]) {
 	clock_t start_t, end_t, total_t;
 	start_t = clock();
 	step tempPath[numberOfCities];
 	copy_path(numberOfCities, path, tempPath);
 	double minimumResult = INFINITY;
 	int currentResult;
-	for (int i = 0; i < numberOfIterations; ++i)
+	for (int i = 0; i < iterationsWithoutImprovement; ++i)
 	{
 		initialize_cities_as_not_visited(numberOfCities, cities);
 		nearest_neighbor(numberOfCities, cities, distances, tempPath);

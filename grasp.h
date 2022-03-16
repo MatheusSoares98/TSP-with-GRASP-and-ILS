@@ -9,20 +9,21 @@
 #include "local_search.h"
  
 
-int grasp(int numberOfIterations, int numberOfCities, int distances[][numberOfCities], city cities[], step path[]) {
+int grasp(int iterationsWithoutImprovement, int numberOfCities, int distances[][numberOfCities], city cities[], step path[], FILE *f, float alpha) {
 	clock_t start_t, end_t, total_t;
 	start_t = clock();
 	step tempPath[numberOfCities];
 	copy_path(numberOfCities, path, tempPath);
 	double minimumResult = INFINITY;
-	int currentResult;
-	for (int i = 0; i < numberOfIterations; ++i)
+	int currentResult, totalIterations;
+	for (int i = 0; i < iterationsWithoutImprovement; ++i, totalIterations++)
 	{
 		initialize_cities_as_not_visited(numberOfCities, cities);
-		nearest_neighbor(numberOfCities, cities, distances, tempPath);
+		nearest_neighbor(numberOfCities, cities, distances, tempPath, alpha);
 		currentResult = opt2(numberOfCities, tempPath);
 		if (currentResult < minimumResult)
 		{
+			i = 0;
 			minimumResult = currentResult;
 			copy_path(numberOfCities, tempPath, path);
 		}

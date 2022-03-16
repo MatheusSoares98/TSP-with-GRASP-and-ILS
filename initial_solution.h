@@ -7,7 +7,7 @@
 
 int find_nearest(int numberOfCities, int currentCity, int distances[][numberOfCities], city cities[]);
 
-void nearest_neighbor(int numberOfCities, city cities[], int distances[][numberOfCities], step path[]){
+void nearest_neighbor(int numberOfCities, city cities[], int distances[][numberOfCities], step path[], float alpha){
     int nearest = 0;
     int currentStop = 0;
     int i;
@@ -15,14 +15,15 @@ void nearest_neighbor(int numberOfCities, city cities[], int distances[][numberO
     int currentCity = pos, currentCityCopy;
     cities[pos].visited = true;
     int firstcity = currentCity;
-    double alpha = get_random_interval(0, 1);
+    //double alpha = get_random_interval(0, 1);
     
     for (i = 0; i < numberOfCities && (count_unvisited_cities(numberOfCities, cities) > 0); ++i)
 	{
 		city citiesCopy[numberOfCities];
 		copy_cities(numberOfCities, cities, citiesCopy);
-		int size = (int)get_random_interval(1, count_unvisited_cities(numberOfCities, citiesCopy) + 0.99);
-        //printf("size = %d\n", size);
+		//int size = (int)get_random_interval(1, count_unvisited_cities(numberOfCities, citiesCopy) + 0.99);
+		int size = count_unvisited_cities(numberOfCities, citiesCopy);
+        //printf("size = %d   alpha = %f\n", size, alpha);
         if (size * alpha >=1 )
         {
             size *= alpha;
