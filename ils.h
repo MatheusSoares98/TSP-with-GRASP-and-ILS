@@ -128,9 +128,9 @@ void double_bridge(int numberOfCities, step path[numberOfCities]) {
 	copy_path(numberOfCities, copy, path);
 }
 
-int ils(int iterationsWithoutImprovement, int numberOfCities, int distances[][numberOfCities], city cities[], step path[], FILE *f, float alpha)
+int ils(int iterationsWithoutImprovement, int numberOfCities, int distances[][numberOfCities], city cities[], step path[], FILE *f, float alpha, clock_t *total_t)
 {
-	clock_t start_t, end_t, total_t;
+	clock_t start_t, end_t;
 	start_t = clock();
 	step tempPath[numberOfCities];
 	
@@ -153,8 +153,8 @@ int ils(int iterationsWithoutImprovement, int numberOfCities, int distances[][nu
 		}
 	}
 	end_t = clock();
-	total_t = (long int)(end_t - start_t);
-   	printf("Total time taken by CPU: %f\n", (float)total_t / CLOCKS_PER_SEC);
+	*total_t = (long int)(end_t - start_t);
+   	//printf("Total time taken by CPU: %f\n", (float)*total_t / CLOCKS_PER_SEC);
 	return (int)minimumResult;
 }
 

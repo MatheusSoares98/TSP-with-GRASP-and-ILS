@@ -4,8 +4,10 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
+#include <time.h> 
 #include "file.h"
 #include "auxiliary.h"
+#include "benchmark.h"
 #include "ils.h"
 #include "grasp.h"
 
@@ -14,6 +16,9 @@ int main(int argc, char const *argv[])
 	srand((unsigned) time(NULL));
 	char fileName[250], line[250], filePath[250]="./instances/", benchmark[250]="./benchmark/";
 	int iterationsWithoutImprovement = 100;
+	int execution1, execution2, execution3, bestSolution;
+	clock_t execution1Time, execution2Time, execution3Time, averageTime;
+	float averageSolution;
 	//printf("digite o numero de iteracoes desejadas\n");
 	//scanf("%d", &iterationsWithoutImprovement);
 	printf("digite o nome do arquivo a ser lido\n");
@@ -24,7 +29,7 @@ int main(int argc, char const *argv[])
 	strcat(filePath, ".tsp");
 	printf("%s", filePath);
 	FILE *f = fopen(filePath, "r");
-	FILE *benchmarkFile = fopen(benchmark, "a");
+	FILE *benchmarkFile = fopen(benchmark, "w");
 	if(f == NULL)
    	{
       printf("Arquivo nao encontrado");   
@@ -45,13 +50,41 @@ int main(int argc, char const *argv[])
 	create_distance_matrix(numberOfCities, cities, distances);
 	
 	float alpha = (numberOfCities < 100) ? 0.1 : 0.3;
+	execution1 = grasp(iterationsWithoutImprovement, numberOfCities, distances, cities, path, benchmarkFile, alpha, &execution1Time);
+	execution2 = grasp(iterationsWithoutImprovement, numberOfCities, distances, cities, path, benchmarkFile, alpha, &execution2Time);
+	execution3 = grasp(iterationsWithoutImprovement, numberOfCities, distances, cities, path, benchmarkFile, alpha, &execution3Time);
+	averageTime = (execution1Time + execution2Time + execution3Time) / 3;
+	averageSolution = (execution1 + execution2 + execution3) / 3;
+	bestSolution = find_best_solution(execution1, execution2, execution3);
 
-	printf("melhor = %d\n", grasp(iterationsWithoutImprovement, numberOfCities, distances, cities, path, benchmarkFile, alpha));
-	printf("melhor = %d\n", grasp(iterationsWithoutImprovement, numberOfCities, distances, cities, path, benchmarkFile, alpha));
-	printf("melhor = %d\n", grasp(iterationsWithoutImprovement, numberOfCities, distances, cities, path, benchmarkFile, alpha));
-	//printf("melhor = %d\n", ils(iterationsWithoutImprovement, numberOfCities, distances, cities, path, benchmarkFile, alpha));
+	fprintf(benchmarkFile, "GRASP:\n");
+	fprintf(benchmarkFile, "Average solution: %f\n", averageSolution);
+	fprintf(benchmarkFile, "Best solution: %d\n", bestSolution);
+	fprintf(benchmarkFile, "Average time: %f\n\n\n",(float)averageTime/ CLOCKS_PER_SEC);
 
-	printf("%d\n", is_a_valid_path(numberOfCities, path));
+	fprintf(benchmarkFile, "ILS:\n");
+	execution1 = ils(iterationsWithoutImprovement, numberOfCities, distances, cities, path, benchmarkFile, alpha, &execution1Time);
+	execution2 = ils(iterationsWithoutImprovement, numberOfCities, distances, cities, path, benchmarkFile, alpha, &execution2Time);
+	execution3 = ils(iterationsWithoutImprovement, numberOfCities, distances, cities, path, benchmarkFile, alpha, &execution3Time);
+	averageTime = (execution1Time + execution2Time + execution3Time) / 3;
+	averageSolution = (execution1 + execution2 + execution3) / 3;
+	bestSolution = find_best_solution(execution1, execution2, execution3);
+
+	fprintf(benchmarkFile, "Average solution: %f\n", averageSolution);
+	fprintf(benchmarkFile, "Best solution: %d\n", bestSolution);
+	fprintf(benchmarkFile, "Average time: %f\n\n\n",(float)averageTime/ CLOCKS_PER_SEC);
+	
+	
+	/*printf("execution 1 = %d\n", execution1);
+	printf("execution 2 = %d\n", execution2);
+	printf("execution 3 = %d\n", execution3);
+	printf("Average time taken by CPU: %f\n", (float)averageTime/ CLOCKS_PER_SEC);
+	printf("best execution = %d\n", bestSolution);
+	printf("average solution = %.2f\n", averageSolution);
+	//printf("melhor = %d\n", ils(iterationsWithoutImprovement, numberOfCities, distances, cities, path, benchmarkFile, alpha));*/
+
+	//printf("%d\n", is_a_valid_path(numberOfCities, path));
+	
 	fclose(f);
 	
 	return 0;
