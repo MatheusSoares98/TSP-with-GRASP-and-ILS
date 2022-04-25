@@ -75,15 +75,6 @@ int main(int argc, char const *argv[])
 	fprintf(benchmarkFile, "Average time: %f\n\n\n",(float)averageTime/ CLOCKS_PER_SEC);
 	
 	
-	/*printf("execution 1 = %d\n", execution1);
-	printf("execution 2 = %d\n", execution2);
-	printf("execution 3 = %d\n", execution3);
-	printf("Average time taken by CPU: %f\n", (float)averageTime/ CLOCKS_PER_SEC);
-	printf("best execution = %d\n", bestSolution);
-	printf("average solution = %.2f\n", averageSolution);
-	//printf("melhor = %d\n", ils(iterationsWithoutImprovement, numberOfCities, distances, cities, path, benchmarkFile, alpha));*/
-
-	//printf("%d\n", is_a_valid_path(numberOfCities, path));
 	
 	fclose(f);
 	
